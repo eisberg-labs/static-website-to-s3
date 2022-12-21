@@ -1,0 +1,27 @@
+name: "Deploy static website to S3"
+description: "Deploys static website to S3 without html extension. Works for NextJS."
+author: "Ana Bujan - Eisberg Labs"
+runs:
+  using: "composite"
+  steps:
+    - uses: unfor19/install-aws-cli-action@v1
+    - run: ./deploy-doc-to-s3.sh "${{inputs.target}}" "${{inputs.exclusions}}" "${{inputs.bucket}}" "${{inputs.dest}}"
+      shell: bash
+inputs:
+  target:
+    description: 'Location of static website'
+    required: false
+    default: ''
+  exclusions:
+    description: 'Regex pattern for files to be excluded from extension removal'
+    required: false
+    default: ''
+  bucket:
+    description: 'Bucket name'
+    required: true
+  dest:
+    description: 'Destination directory path'
+    required: true
+branding:
+  icon: "upload-cloud"
+  color: "blue"
