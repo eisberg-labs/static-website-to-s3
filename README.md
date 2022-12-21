@@ -1,3 +1,5 @@
+[![Deploy NextJS](https://github.com/eisberg-labs/static-website-to-s3/actions/workflows/deploy-nextjs.yml/badge.svg)](https://github.com/eisberg-labs/static-website-to-s3/actions/workflows/deploy-nextjs.yml)
+
 # Static website to S3 Github action
 > This action will deploy your static website to S3 without the html extension.
 
