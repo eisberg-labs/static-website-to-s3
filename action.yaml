@@ -5,7 +5,7 @@ runs:
   using: "composite"
   steps:
     - uses: unfor19/install-aws-cli-action@v1
-    - run: ./deploy-doc-to-s3.sh "${{inputs.target}}" "${{inputs.exclusions}}" "${{inputs.bucket}}" "${{inputs.dest}}"
+    - run: ${{ github.action_path }}/deploy-doc-to-s3.sh "${{inputs.target}}" "${{inputs.exclusions}}" "${{inputs.bucket}}" "${{inputs.dest}}"
       shell: bash
 inputs:
   target:
