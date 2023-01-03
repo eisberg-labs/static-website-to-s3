@@ -1,5 +1,11 @@
 ## Unreleased
 
+### Fix
+
+- fix formatting
+
+## v3 (2023-01-03)
+
 ### BREAKING CHANGE
 
 - Recursive folder search
