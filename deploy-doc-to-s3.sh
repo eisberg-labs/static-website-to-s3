@@ -9,17 +9,21 @@ function remove_html_extension() {
   TARGET=$1
   EXCLUDES_REGEX=$2
 
-  for filename in $TARGET/*.html; do
+  for filename in $(find $TARGET -type f -name '*.html'); do
     # File is html and not in $EXCLUDES_REGEX files
-    if [[ $filename =~ ^.+\.html$ && ! $filename =~ $EXCLUDES_REGEX ]]; then
-      original="$filename"
-      # Get the filename without the path/extension
-      filename=$(basename "$filename")
-      extension="${filename##*.}"
-      filename="${filename%.*}"
+    if [[ $filename =~ ^.+\.html$ ]]; then
+      if [[ ! -z $EXCLUDES_REGEX && $filename =~ $EXCLUDES_REGEX ]]; then
+        echo 'skipping $filename'
+      else
+		  original="$filename"
+		  # Get the filename without the path/extension
+		  filename=$(basename "$filename")
+		  extension="${filename##*.}"
+		  filename="${filename%.*}"
 
-      # Move it
-      mv $original $TARGET/$filename
+		  # Move it
+		  mv $original $TARGET/$filename
+	  fi
     fi
   done
 }
