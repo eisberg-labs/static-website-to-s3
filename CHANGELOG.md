@@ -2,6 +2,12 @@
 
 ### Fix
 
+- **remove_html_extension**: fix target directory
+
+## v4 (2023-01-03)
+
+### Fix
+
 - fix formatting
 
 ## v3 (2023-01-03)
