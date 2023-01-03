@@ -13,17 +13,19 @@ function remove_html_extension() {
     # File is html and not in $EXCLUDES_REGEX files
     if [[ $filename =~ ^.+\.html$ ]]; then
       if [[ ! -z $EXCLUDES_REGEX && $filename =~ $EXCLUDES_REGEX ]]; then
-        echo skipping $filename
+        echo 'skipping $filename'
       else
-        original="$filename"
-        # Get the filename without the path/extension
-        filename=$(basename "$filename")
-        extension="${filename##*.}"
-        filename="${filename%.*}"
+		  original="$filename"
+		  targetdir=$(dirname "$original")
+		  # Get the filename without the path/extension
+		  filename=$(basename "$filename")
+		  extension="${filename##*.}"
+		  filename="${filename%.*}"
 
-        # Move it
-        mv $original $TARGET/$filename
-      fi
+		  # Move it
+		  echo "mv $original $targetdir/$filename"
+		  mv $original $targetdir/$filename
+	  fi
     fi
   done
 }
