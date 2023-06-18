@@ -33,7 +33,7 @@ function remove_html_extension() {
 function upload_to_s3() {
   TARGET=$1
   BUCKET=$2
-  DEST=$3
+  DEST=${3:-}
   ## Now upload to s3, deleting any items that no longer exist
   aws s3 sync --delete $TARGET s3://$BUCKET/$DEST
   ## Rename all files without the extension to mimetype text/html
@@ -53,7 +53,7 @@ function deploy() {
   TARGET=$1
   EXCLUDES_REGEX=$2
   BUCKET=$3
-  DEST=$4
+  DEST=${4:-}
 
   remove_html_extension $TARGET $EXCLUDES_REGEX
   upload_to_s3 $TARGET $BUCKET $DEST
